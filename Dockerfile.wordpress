@@ -1,0 +1,14 @@
+# Dockerfile for WordPress with Git
+FROM wordpress:latest
+
+# Install git
+RUN apt-get update && apt-get install -y git
+
+# Copy the entrypoint script
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+
+# Make the script executable
+RUN chmod +x /usr/local/bin/entrypoint.sh
+
+# Use the new entrypoint script
+ENTRYPOINT ["sh", "/usr/local/bin/entrypoint.sh"]
